@@ -42,6 +42,7 @@ Install development dependencies
 ```bash
 pip install -e ".[dev]"
 pip install -e ".[test]"
+pip install -e ".[doc]"
 ```
 Set pre-commit hooks :
 ```bash

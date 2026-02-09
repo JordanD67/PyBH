@@ -4,7 +4,7 @@ channels:
 
 dependencies:
   # --- Core dependencies (runtime) ---
-  - python>=3.11
+  - python=3.12
   - numpy
   - pandas
   - scipy
@@ -12,3 +12,4 @@ dependencies:
   - pymc
   - arviz
   - pytensor
+  - pymc-extras
