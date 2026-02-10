@@ -1,0 +1,64 @@
+# .pre-commit-config.yaml
+# Automatic quality checks before each commit.
+# Run "pre-commit install" once to activate it.
+
+ci:
+  autofix_prs: false
+
+repos:
+  # 1. Check for syntax errors and unused imports
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+      - id: python-no-log-warn
+      - id: python-check-mock-methods
+
+  # 2. Sort imports automatically (PEP8 order)
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        name: Sort imports
+        args: ["--profile", "black"]
+
+  # 3. Format code automatically with Black
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black
+        name: Format code with Black
+        language_version: python3
+
+  # 4. Spell checker (skip notebooks)
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        name: Check spelling
+        exclude: '.*\.ipynb'
+        args: ["--ignore-words-list", "nd"]
+        additional_dependencies:
+          - tomli  # support for pyproject.toml configuration
+
+  # 5. Lint with flake8 (lightweight static analysis)
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        name: Lint code
+        additional_dependencies: [flake8-bugbear]
+        args: ["--max-line-length=88"]
+
+  # 6. Validate YAML, JSON, and Markdown
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: check-added-large-files
+        exclude: '.*\.ipynb$'

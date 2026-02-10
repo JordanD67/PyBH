@@ -1,0 +1,15 @@
+name: PyBH
+channels:
+  - conda-forge
+
+dependencies:
+  # --- Core dependencies (runtime) ---
+  - python=3.12
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - pymc
+  - arviz
+  - pytensor
+  - pymc-extras

@@ -1,0 +1,37 @@
+[project]
+name = "mylib"
+version = "0.1.0"
+description = "An open-source library for Bayesian statistical modeling, designed for the health sector."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Jean Van Dyk", email = "jeanvandyk14@gmail.com" }]
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "matplotlib",
+    "pymc",
+    "arviz",
+    "pytensor",
+    "scipy",
+]
+
+[project.optional-dependencies]
+dev = ["pre-commit", "black", "isort", "codespell"]
+test = ["pytest", "pytest-cov", "nbformat", "nbconvert"]
+docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-rtd-theme", "sphinxcontrib-napoleon", "myst-nb", "ipykernel"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "-vv",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=PyBh",
+    "--cov-report=term-missing",
+]
+testpaths = "PyBH/tests"
+markers = [
+    "integration: mark as an integration test.",
+    "slow: mark test as slow.",
+]
